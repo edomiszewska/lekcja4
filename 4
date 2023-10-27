@@ -35,3 +35,6 @@ select filmy.tytul from filmy join obsada on obsada.id_filmu=filmy.id_filmu JOIN
 
 tytul filmu najdluzej wypozycznony
 select filmy.tytul from filmy join kopie on kopie.id_filmu=filmy.id_filmu join wypozyczenia on wypozyczenia.id_kopii=kopie.id_kopii order by (wypozyczenia.data_zwrotu-wypozyczenia.data_wypozyczenia) DESC limit 1; 
+
+
+select DISTINCT klienci.nazwisko from klienci join wypozyczenia on wypozyczenia.id_klienta=klienci.id_klienta where wypozyczenia.data_wypozyczenia BETWEEN "2005-07-15" and "2005-07-20"; 
