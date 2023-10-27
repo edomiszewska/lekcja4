@@ -4,3 +4,23 @@ lektion 4
 zadanie 1 - dla kazdej kopii wyswietl jej identyfikator cos tam cos tam
 SELECT kopie.id_kopii, filmy.tytul FROM filmy join kopie ON kopie.id_filmu=filmy.id_filmu order by kopie.id_kopii ASC; 
 
+zadadanie 2 - wyswietl tytuly wszystkich filmow, ktorych kopie aktualne sa dostepne w wypozyczalni i wyeliminuj duplikaty
+SELECT DISTINCT filmy.tytul from kopie inner join filmy on kopie.id_filmu=filmy.id_filmu where kopie.czy_dostepna='T' order by tytul; 
+
+
+nastepne ja nwm rymsza to pisze
+id kopii gdzie rok produ. to 1984
+SELECT kopie.id_kopii from kopie inner join filmy on kopie.id_filmu=filmy.id_filmu where filmy.rok_produkcji=1984; 
+
+gdyby byl natural join to moglibysmy bez klucza czyli od 'on' do 'filmu' mozna usunac gdyby join bylby natural ale pan nie pozwala bo za latwo.
+
+zad kolejne
+SELECT wypozyczenia.data_wypozyczenia, wypozyczenia.data_zwrotu, klienci.nazwisko from wypozyczenia inner join klienci on klienci.id_klienta=wypozyczenia.id_klienta;
+
+select klienci.nazwisko, filmy.tytul from wypozyczenia join klienci on klienci.id_klienta=wypozyczenia.id_klienta join kopie on kopie.id_kopii=wypozyczenia.id_kopii join filmy on filmy.id_filmu=kopie.id_filmu;
+
+select filmy.tytul, filmy.rok_produkcji from filmy join kopie on filmy.id_filmu=kopie.id_filmu join wypozyczenia on kopie.id_kopii=wypozyczenia.id_kopii join klienci on klienci.id_klienta=wypozyczenia.id_klienta where klienci.nazwisko like "Kowalski";
+
+z zamienionymi aliasami:
+select filmy.tytul as 't', filmy.rok_produkcji as 'r_p' from filmy join kopie on filmy.id_filmu=kopie.id_filmu join wypozyczenia on kopie.id_kopii=wypozyczenia.id_kopii join klienci on klienci.id_klienta=wypozyczenia.id_klienta where klienci.nazwisko like "Kowalski"; 
+
