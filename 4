@@ -24,3 +24,14 @@ select filmy.tytul, filmy.rok_produkcji from filmy join kopie on filmy.id_filmu=
 z zamienionymi aliasami:
 select filmy.tytul as 't', filmy.rok_produkcji as 'r_p' from filmy join kopie on filmy.id_filmu=kopie.id_filmu join wypozyczenia on kopie.id_kopii=wypozyczenia.id_kopii join klienci on klienci.id_klienta=wypozyczenia.id_klienta where klienci.nazwisko like "Kowalski"; 
 
+pierwsze wypozyczenie
+select klienci.nazwisko from klienci join wypozyczenia on klienci.id_klienta=wypozyczenia.id_klienta order by wypozyczenia.data_wypozyczenia ASC LIMIT 1;
+
+aktorzy z terminatora
+select aktorzy.nazwisko from aktorzy join obsada on obsada.id_aktora=aktorzy.id_aktora JOIN filmy on filmy.id_filmu=obsada.id_filmu where filmy.tytul like "Terminator"; 
+
+tytuly filmow w ktorym gra de niro
+select filmy.tytul from filmy join obsada on obsada.id_filmu=filmy.id_filmu JOIN aktorzy on aktorzy.id_aktora=obsada.id_aktora where aktorzy.nazwisko like "De Niro"; 
+
+tytul filmu najdluzej wypozycznony
+select filmy.tytul from filmy join kopie on kopie.id_filmu=filmy.id_filmu join wypozyczenia on wypozyczenia.id_kopii=kopie.id_kopii order by (wypozyczenia.data_zwrotu-wypozyczenia.data_wypozyczenia) DESC limit 1; 
